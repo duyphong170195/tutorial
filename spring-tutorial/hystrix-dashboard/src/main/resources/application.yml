@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: get
+          uri: http://httpbin.org:80
+          filters:
+            - AddResponseHeader=X-Response-Red, Blue
+#          predicates:
+#            - path=/bin/**
