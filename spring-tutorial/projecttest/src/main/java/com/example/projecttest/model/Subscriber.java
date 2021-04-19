@@ -3,6 +3,7 @@ package com.example.projecttest.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,14 +13,19 @@ public class Subscriber {
 
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
+    @Column(name = "subscriber_code")
     private String subscriberCode;
 
+    @Column(name = "first")
     private String first;
 
+    @Column(name = "last")
     private String last;
 
+    @Column(name = "email")
     private String email;
 
     public Long getId() {
@@ -59,6 +65,14 @@ public class Subscriber {
     }
 
     public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Subscriber(String subscriberCode, String first, String last, String email) {
+        this.id = id;
+        this.subscriberCode = subscriberCode;
+        this.first = first;
+        this.last = last;
         this.email = email;
     }
 }
