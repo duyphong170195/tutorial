@@ -6,11 +6,13 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ImportResource;
 
 import java.util.Collection;
 import java.util.Collections;
 
 @SpringBootApplication
+@ImportResource("classpath*:beans.xml")
 public class ProjecttestApplication {
 
 	public static void main(String[] args) {
@@ -18,10 +20,10 @@ public class ProjecttestApplication {
 	}
 
 
-	@Bean
-	CommandLineRunner runner(SubscriberRepo subscriberRepo) {
-		return args ->  {
-			subscriberRepo.save(new Subscriber("scode1", "a", "b", "c"));
-		};
-	}
+//	@Bean
+//	CommandLineRunner runner(SubscriberRepo subscriberRepo) {
+//		return args ->  {
+//			subscriberRepo.save(new Subscriber("scode1", "a", "b", "c"));
+//		};
+//	}
 }
