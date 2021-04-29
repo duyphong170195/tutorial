@@ -3,6 +3,7 @@ package algorithms;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class FormingAMagicSquare {
 
@@ -11,141 +12,35 @@ public class FormingAMagicSquare {
     public static int formingMagicSquare(List<List<Integer>> s) {
         // Write your code here
 
-        List<Integer> cornerOfSquare = Arrays.asList(2, 4, 6, 8);
-        List<Integer> oddMid  = Arrays.asList(1, 3, 7 , 9);
-        Integer center = 5;
-        LinkedList<Integer> linkedList = new LinkedList<>();
-        int indexRow1[]= {-1, -1, -1};
-        int indexRow2[]= {-1, -1, -1};
-        int indexRow3[]= {-1, -1, -1};
-        List<Integer> indexList = s.get(0);
-        List<Integer> indexList2 = s.get(1);
-        List<Integer> indexList3 = s.get(2);
-        for (int i = 0; i< indexList.size(); i++) {
-            if(i%2 == 0)
-
-            {
-                // row 1
-                if(cornerOfSquare.contains(indexList.get(i))) {
-                    cornerOfSquare.remove(indexList.get(i));
-                } else {
-                    indexRow1[i] = 1;
-                }
-                // row 3
-                if(cornerOfSquare.contains(indexList3.get(i))) {
-                    cornerOfSquare.remove(indexList3.get(i));
-                } else {
-                    indexRow3[i] = 1;
-                }
-
-                // row 2
-                if(oddMid.contains(indexList2.get(i))) {
-                    oddMid.remove(indexList2.get(i));
-                } else {
-                    indexRow2[i] = 1;
-                }
-            } else {
-                // row 1
-                if(oddMid.contains(indexList.get(i))) {
-                    oddMid.remove(indexList.get(i));
-                } else {
-                    indexRow1[i] = 1;
-                }
-                // row 3
-                if(oddMid.contains(indexList3.get(i))) {
-                    oddMid.remove(indexList3.get(i));
-                } else {
-                    indexRow3[i] = 1;
-                }
-
-                // row 2
-                if(oddMid.contains(indexList2.get(i))) {
-                    oddMid.remove(indexList2.get(i));
-                } else {
-                    indexRow2[i] = 1;
+        int[][][] listMagicSquare = {
+                {{8,1,6}, {3,5,7}, {4,9,2}},
+                {{6,1,8}, {7,5,3}, {2,9,4}},
+                {{4,9,2}, {3,5,7}, {8,1,6}},
+                {{2,9,4}, {7,5,3}, {6,1,8}},
+                {{8,3,4}, {1,5,9}, {6,7,2}},
+                {{4,3,8}, {9,5,1}, {2,7,6}},
+                {{6,7,2}, {1,5,9}, {8,3,4}},
+                {{2,7,6}, {9,5,1}, {4,3,8}},
+        };
+        int minimumSum = 0;
+        TreeMap<Integer, String> treeMap = new TreeMap<>();
+        for(int i = 0; i < listMagicSquare.length; i++) {
+            for(int j = 0; j < listMagicSquare[i].length; j++) {
+                List<Integer> magicSquare = s.get(j);
+                for(int k = 0; k < listMagicSquare[i][j].length; k++) {
+                    minimumSum += Math.abs(listMagicSquare[i][j][k] - magicSquare.get(k));
                 }
             }
-
-
+            treeMap.put(minimumSum, "");
+            minimumSum = 0;
         }
 
+        return treeMap.firstKey();
+    }
 
-
-        // row 0
-        if(cornerOfSquare.contains(indexList.get(0))) {
-            cornerOfSquare.remove(indexList.get(0));
-        } else {
-            indexRow1[0] = 1;
-        }
-        if(cornerOfSquare.contains(indexList.get(1))) {
-            cornerOfSquare.remove(indexList.get(1));
-        } else {
-            indexRow1[1] = 1;
-        }
-        if(cornerOfSquare.contains(indexList.get(2))) {
-            cornerOfSquare.remove(indexList.get(2));
-        } else {
-            indexRow1[2] = 1;
-        }
-        // row 1
-        if(oddMid.contains(indexList2.get(0))){
-            cornerOfSquare.remove(indexList2.get(0));
-        } else {
-            indexRow2[0] = 1;
-        }
-        if(center.equals(center)) {
-            cornerOfSquare.remove(indexList2.get(1));
-        } else {
-            indexRow2[1] = 1;
-        }
-        if(oddMid.contains(indexList2.get(2))) {
-            cornerOfSquare.remove(indexList2.get(2));
-        } else {
-            indexRow2[2] = 1;
-        }
-
-        // row 2
-        // row 0
-        if(cornerOfSquare.contains(indexList3.get(0))) {
-            cornerOfSquare.remove(indexList3.get(0));
-        } else {
-            indexRow3[0] = 1;
-        }
-        if(cornerOfSquare.contains(indexList3.get(1))) {
-            cornerOfSquare.remove(indexList3.get(1));
-        } else {
-            indexRow3[1] = 1;
-        }
-        if(cornerOfSquare.contains(indexList3.get(2))) {
-            cornerOfSquare.remove(indexList3.get(2));
-        } else {
-            indexRow3[2] = 1;
-        }
-
-
-//        if(indexList.get(0) + indexList.get(2) + indexList3.get(0) +  indexList3.get(2) != 20) {
-//            if(cornerOfSquare.contains(indexList.get(0))) {
-//                cornerOfSquare.remove(indexList.get(0));
-//            }
-//            if(cornerOfSquare.contains(indexList.get(2))) {
-//                cornerOfSquare.remove(indexList.get(2));
-//            }
-//            if(cornerOfSquare.contains(indexList3.get(0))) {
-//                cornerOfSquare.remove(indexList3.get(0));
-//            }
-//            if(cornerOfSquare.contains(indexList3.get(2))) {
-//                cornerOfSquare.remove(indexList3.get(2));
-//            }
-//        }
-//        if(indexList.get(1) + indexList2.get(0) + indexList2.get(2) +  indexList3.get(1) != 20) {
-//
-//        }
-
-//        for(int i = 0; i < s.size(); i++) {
-//            List<Integer> indexList = s.get(i);
-//            for(int j = 0; j< indexList.size(); j++) {
-//                if(indexList.get(j).co)
-//            }
-//        }
+    public static void main(String[] args) {
+        List<List<Integer>> s  = Arrays.asList(Arrays.asList(5,3,4), Arrays.asList(1,5,8), Arrays.asList(6,4,2));
+        List<List<Integer>> s2  = Arrays.asList(Arrays.asList(5,3,4), Arrays.asList(1,5,8), Arrays.asList(6,4,2));
+        System.out.println(formingMagicSquare(s));
     }
 }
