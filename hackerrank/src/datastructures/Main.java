@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Nodee node2111 = new Nodee(8, null, null);
-//        Nodee node2112 = new Nodee(9, null, null);
+       Nodee node2111 = new Nodee(8, null, null);
+        Nodee node2112 = new Nodee(9, null, null);
 //
 //        Nodee node211 = new Nodee(4, node2111, node2112);
 //        Nodee node212 = new Nodee(5, null, null);
