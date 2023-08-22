@@ -13,7 +13,7 @@ public class ParkingDilemma {
         long shortCover = cars.get(k-1) - cars.get(0);
         System.out.println(shortCover);
         for(int i = k; i< cars.size(); i++) {
-            shortCover = Math.min(shortCover,  cars.get(i) - cars.get(i-k));
+            shortCover = Math.min(shortCover,  cars.get(i) - cars.get(i-k+1));
             System.out.println(shortCover);
         }
         return shortCover +1;

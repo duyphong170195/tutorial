@@ -1,14 +1,68 @@
 package leetcode.algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class GenerateParentheses {
 
     public static void main(String[] args) {
-        System.out.println(generateParenthesis(2));
+        generateParenthesis6(3);
+        System.out.println(linkedList);
     }
+
+    static LinkedList<String> linkedList = new LinkedList<>();
+
+    public static void generateParenthesis6(int n) {
+        generate(0, 0, n, n*2, "");
+        System.out.println();
+    }
+
+    static void generate(int open, int close, int n , int size, String stringBuilder) {
+
+        // stop back tracking
+        if( stringBuilder.length() == size) {
+            linkedList.add(stringBuilder);
+        }
+        //
+        if(open < n) {
+//            stringBuilder = ;
+//            open++;
+            generate(open + 1, close, n, size, stringBuilder + "(");
+        }
+
+        if(close < open) {
+//            stringBuilder = stringBuilder.concat(")");
+//            close ++;
+            generate(open, close + 1, n, size, stringBuilder + ")");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static List<String> generateParenthesis(int n) {
         List<String> list = new ArrayList<>();
