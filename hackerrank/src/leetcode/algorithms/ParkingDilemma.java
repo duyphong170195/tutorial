@@ -38,6 +38,24 @@ public class ParkingDilemma {
         return minDist + 1;
     }
 
+    public static int carParkingRoof(int[] cars, int k) {
+        // Sort the parking spots
+        Arrays.sort(cars);
+
+        // Initialize the minimum roof length with a large value
+        int minRoofLength = Integer.MAX_VALUE;
+
+        // Slide the window of size k over the sorted positions
+        for (int i = 0; i <= cars.length - k; i++) {
+            // Calculate the length of the roof for the current window
+            int roofLength = cars[i + k - 1] - cars[i] + 1;
+            // Update the minimum roof length
+            minRoofLength = Math.min(minRoofLength, roofLength);
+        }
+
+        return minRoofLength;
+    }
+
     // đếm số lần khi bật công tắc đèn tại đèn đó có thể sáng
     public static long bulbs(List<Long> bulbs) {
         int count = 0;
@@ -52,7 +70,10 @@ public class ParkingDilemma {
 
     public static void main(String[] args) {
 //        System.out.println(carParkingRoof(Arrays.asList(10L,2L,3L,8L), 3));
-        bulbs(Arrays.asList(2L,1L,3L,5L,4L));
+//        bulbs(Arrays.asList(2L,1L,3L,5L,4L));
 //        System.out.println(carParkingRoof2(Arrays.asList(10L,2L,3L,11L, 12L, 14L, 17L), 4));
+
+        int[] cars = {6,2,12,7};
+        System.out.println(carParkingRoof(cars, 3));
     }
 }
