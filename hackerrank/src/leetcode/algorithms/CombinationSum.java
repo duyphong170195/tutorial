@@ -32,7 +32,7 @@ public class CombinationSum {
             }
             keyToListNumbers.put(key, combinationList);
         }
-        for(Map<Integer, List<List<Integer>>> )
+//        for(Map<Integer, List<List<Integer>>> )
 
             // TODO check
 //        for(int m = 0; m < combinationOfEachNumber.size(); m++) {
