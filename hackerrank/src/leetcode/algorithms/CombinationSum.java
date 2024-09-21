@@ -112,10 +112,10 @@ public class CombinationSum {
     public static void main(String[] args) {
 
 
-        int a[] = {2,3,4,6,7, 9};
+        int a[] = {8,7,4,3};
 
 
-        List<List<Integer>> results = combinationSum2(a, 13);
+        List<List<Integer>> results = combinationSum2(a, 11);
 //        combinationSum(a, 6);
 //        List<Integer> abc = new ArrayList<>();
 //        abc.addAll(List.of(2,3,4,6,7));
@@ -123,5 +123,28 @@ public class CombinationSum {
 //        abc.toString();
 
         System.out.println(results);
+    }
+
+    private static List<List<Integer>> comSum(int[] probSum, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> currentArr = new ArrayList<>();
+        recurse(probSum, target, result, currentArr, 0);
+        return result;
+    }
+
+    private static void recurse(int[] probSum, int target, List<List<Integer>> result, List<Integer> currentArr, int start) {
+        if(target ==0) {
+            System.out.println(currentArr);
+            result.add(new ArrayList<>(currentArr));
+            return;
+        }
+
+        for(int i = start; i < probSum.length; i++) {
+            if(target < probSum[i]) break;
+
+            currentArr.add(probSum[i]);
+            recurse(probSum, target - probSum[i], result, currentArr, i);
+            currentArr.remove(currentArr.size() -1);
+        }
     }
 }

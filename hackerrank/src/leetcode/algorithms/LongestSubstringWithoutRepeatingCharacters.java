@@ -5,7 +5,36 @@ import java.util.*;
 public class LongestSubstringWithoutRepeatingCharacters {
     public static void main(String[] args) {
 //        System.out.println(lengthOfLongestSubstring("dvdf"));
-        System.out.println(lengthOfLongestSubstring2("abba"));
+//        System.out.println(lengthOfLongestSubstring2("abba"));
+//        System.out.println(String.valueOf(1) + String.valueOf(2));
+        List<Integer> a = new ArrayList<>();
+        a.add(2);
+        a.add(5);
+        a.add(-8);
+        a.add(-6);
+        a.add(-7);
+        System.out.println(gainMaxValue(a, 3));
+    }
+
+    public static int gainMaxValue(List<Integer> security_val, int k) {
+        // Write your code here
+        int n = security_val.size();
+        int[] dp = new int[n];
+
+        Arrays.fill(dp, Integer.MIN_VALUE);
+
+        int maxSum = Integer.MIN_VALUE;
+
+        for(int i = n-1; i>=0; i--) {
+            if(i+k >=n) {
+                dp[i] = security_val.get(i);
+            } else {
+                dp[i] = security_val.get(i) + dp[i+k];
+            }
+
+            maxSum = Math.max(maxSum, dp[i]);
+        }
+        return maxSum;
     }
 
     public static int lengthOfLongestSubstring(String s) {
@@ -72,6 +101,43 @@ public class LongestSubstringWithoutRepeatingCharacters {
         }
         return result;
     }
+
+    public static int countPairs(List<Integer> taskCosts, int target) {
+        // Write your code here
+//        Collections.sort(taskCosts);
+//        Set<String> avoidDuplication = new HashSet<>();
+//        int count = 0;
+//        for(int i = 0; i< taskCosts.size()-1; i++) {
+//            for(int j = 0; j<taskCosts.size(); j++) {
+//                if(taskCosts.get(j) - taskCosts.get(i) == target
+//                        && !avoidDuplication.contains(String.valueOf(taskCosts.get(i)) + String.valueOf(taskCosts.get(j)))) {
+//                    count++;
+//                    avoidDuplication.add(String.valueOf(taskCosts.get(i) + taskCosts.get(j)));
+//                    break;
+//                }
+//            }
+//        }
+
+        Set<Integer> results = new HashSet<>();
+        int count = 0;
+        for(int i = 0; i< taskCosts.size(); i++) {
+            if(results.contains(taskCosts.get(i) + target)) {
+                count++;
+            }
+            if(results.contains(taskCosts.get(i) - target)) {
+                count++;
+            }
+            results.add(taskCosts.get(i));
+        }
+        return count;
+    }
+
+
+
+
+
+
+
 }
 //        for(int i = 0; i < s.length(); i++) {
 //            if(set.contains(s.charAt(i) + "")) {
